@@ -97,21 +97,6 @@ Supplied case records and transcript evidence are kept separate. Captured facts 
 
 Turn-taking allows 1.3 seconds of silence before Scribe commits speech, followed by a cancellable 0.7-second reply delay. Unfinished phrases get a longer 1.8-second delay. Resumed speech cancels a queued or in-flight response; standalone hesitations do not trigger replies. Optional tuning variables are `ELEVEN_VAD_SILENCE_SECONDS`, `TURN_END_DELAY_SECONDS`, and `INCOMPLETE_TURN_DELAY_SECONDS`. Run `PYTHONPATH=. .venv/bin/python scripts/smoke_pauses.py` to check a mid-sentence pause with real voice services and no phone calls.
 
-## Rehearsal script (all fictional)
-
-For the pitch, leave **Pitch demo · 90-second target** enabled and follow the [pitch script](docs/PITCH-DEMO.md). ATP explains Morgan's fictional condition and treatment history, answers an objection with the documented LDL trend, and brings in the doctor when frustration exposes a need for clinical attestation. It resumes after **#** and posts verified approval details to Slack after the insurer explicitly approves and ends the conversation. The on-screen rehearsal cues contain both human roles. The progress strip follows the actual call and notification state.
-
-For the standard pending-review rehearsal below, turn **Pitch demo** off:
-
-- Open the workspace and verify the two saved destination numbers. Have both phones available.
-- Start the insurer call. Let ATP introduce itself automatically.
-- **Insurer:** “I need the doctor to discuss the missing clinical evidence.”
-- **Doctor:** Read the Slack briefing, answer ATP's incoming call, and press **1**. For this demo: “The synthetic LDL result is 190. Please arrange clinical review tomorrow.”
-- Press **#** on the doctor's call keypad. The doctor connection ends; ATP continues speaking to the insurer with that new context. The control page offers the same **Return to AI** action.
-- **Insurer:** “The case is pending clinical review. Reference DEMO-84921. Northline's administrator should submit the requested note by tomorrow. Pharmacy fulfillment is not yet confirmed.” Let ATP confirm next steps, then say goodbye.
-
-If the doctor is unavailable, use **Human unavailable** on the operator briefing. ATP asks for the next contact/review rather than continuing advocacy. An unexpected doctor disconnect pauses the conversation for explicit operator recovery. **Pause AI**, **Resume AI**, **Keypad**, and **End insurer call** remain available.
-
 ### Slack notifications
 
 ATP posts to the private **#atp-demo** channel in the **ATP** workspace. The notification app uses only an incoming webhook: no channel-reading permissions, Slack SDK, or paid messaging service is needed. The secret is saved in the ignored `.env` as `SLACK_WEBHOOK_URL`.
